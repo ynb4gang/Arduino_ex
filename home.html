@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RGB LED Strip Controller</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 620px;
+            margin: 40px auto;
+            padding: 0 18px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 12px;
+            align-items: center;
+            margin: 12px 0;
+        }
+
+        input, select, button {
+            font-size: 18px;
+            padding: 8px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .buttons button {
+            flex: 1;
+        }
+
+        .ok, .error {
+            margin-top: 24px;
+            padding: 12px;
+            border: 1px solid;
+            word-break: break-word;
+        }
+    </style>
+
+    <script>
+        function setValue(val) {
+            document.getElementById("action").value = val;
+            document.getElementById("f1").submit();
+        }
+    </script>
+</head>
+
+<body>
+    <h2>RGB LED Strip Controller</h2>
+
+    <form id="f1" method="get" action="/home.html">
+        <input type="hidden" name="action" id="action">
+
+        <div class="row">
+            <label for="red">Red</label>
+            <input id="red" name="red" type="number" min="0" max="255" value="0">
+        </div>
+
+        <div class="row">
+            <label for="green">Green</label>
+            <input id="green" name="green" type="number" min="0" max="255" value="255">
+        </div>
+
+        <div class="row">
+            <label for="blue">Blue</label>
+            <input id="blue" name="blue" type="number" min="0" max="255" value="0">
+        </div>
+
+        <div class="row">
+            <label for="delay">Delay (ms)</label>
+            <input id="delay" name="delay" type="number" min="0" max="99" value="10">
+        </div>
+
+        <div class="row">
+            <label for="dir">Direction</label>
+            <select id="dir" name="dir">
+                <option value="1">Forward</option>
+                <option value="2">Backward</option>
+            </select>
+        </div>
+
+        <div class="buttons">
+            <button type="button" onclick="setValue(0)">Go</button>
+            <button type="button" onclick="setValue(1)">Clear</button>
+            <button type="button" onclick="setValue(2)">Rainbow</button>
+        </div>
+    </form>
+
+    {{STATUS}}
+</body>
+</html>
